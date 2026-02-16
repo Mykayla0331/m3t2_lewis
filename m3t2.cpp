@@ -5,6 +5,8 @@
 // START THE GAME OF CRAPS
 
 #include <iostream>
+#include <cstdlib> // for random
+#include <ctime> // for time
 using namespace std;
 
 // Function declarations
@@ -13,8 +15,16 @@ int roll();
 
 // main() goes here
 int main () {
-    int number = roll();
-    cout << "You rolled a " << number << endl;
+    // seed the random number generator
+    int seed = time(0);
+    srand(seed);
+
+    // roll two dice and show the results 
+    int first, second, total;
+    first = roll();
+    second = roll ();
+    total = first + second;
+    cout << "You rolled a " << first << " + " << second << " = " << total << endl;
     return 0;
 }
 
@@ -22,5 +32,9 @@ int main () {
 // (actually write the entire function)
 
 int roll() {
-    return 1;
+    // rand() gives a large random number
+    // % 6 divides by six and keeps the remainder
+    // finally, add 1 so it's 1 to 6, not zero to five
+    int my_roll = (rand() % 6) + 1;
+    return my_roll;
 }
